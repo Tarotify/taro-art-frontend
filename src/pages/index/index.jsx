@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Tools} from '../../utils/tools'
 import { Button } from 'antd';
-import styles from './index.less'
+import './index.less'
 import google from '../../asset/img/logo_google.png'
 import github from '../../asset/img/logo_github.png'
 
@@ -68,9 +68,12 @@ export default function Index() {
     return (
         <>
           {/* <div className={styles.home_container}> */}
-          <div className={styles.signinGoogle}  onClick={e => onGithubClick(e)}><img className={styles.google} src={github}></img>Github 登录</div>
-        
-          <Button><div className={styles.signinGoogle} id="signin-google" onClick={e => onGooleClick(e)}><img className={styles.google} src={google}></img>Google 登录</div></Button>
+          <div className="abc">
+              123123123213
+          </div>
+          <div className="signinGoogle"  onClick={e => onGithubClick(e)}><img className="google" src={github} alt="github"></img>Github 登录</div>
+          <div className="signinGoogle" id="signin-google" onClick={e => onGooleClick(e)}><img className="google" src={google} alt="google"></img>Google 登录</div>
+          <Button>绿色的</Button>
           {/* <a href="#" onclick={signOut()}>Sign out</a> */}
             {/* <div className={styles.middleContainer}>
             <div className={styles.desc}>Prototyping Software</div>
