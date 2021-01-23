@@ -20,10 +20,39 @@
             color: #666;
         }
     }
-    .oauth_platform{
+    .login_content{
         width: 360px;
         margin: 0 auto 35px;
-        .btnWrapper{
+        .loginFormWrapper{
+            .login-form{
+                .site-form-item-icon{
+                    color: rgba(0,0,0,0.25);
+                }
+                // antd
+                .ant-input-affix-wrapper-lg{
+                    border-radius: 5px;
+                    .ant-input-lg{
+                        font-size: 14px;
+                        // letter-spacing: 1px;
+                    }
+                }
+                .login-form-button{
+                    width: 100%;
+                }
+                .login-form-forgot{
+                    float: right;
+                    margin: -20px 0 10px;
+                    line-height: 40px;
+                }
+            }
+        }
+        .thridPatry_title{
+            color: #bbb;
+            font-weight: 300;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .thridPatryWrapper{
             display: flex;
             justify-content: space-between;
             .signinGoogle{
@@ -31,6 +60,7 @@
                 height: 40px;
                 line-height: 40px;
                 box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+                border-radius: 3px;
                 margin: 15px 0;
                 padding-left: 25px;
                 color: rgba(0,0,0,0.54);

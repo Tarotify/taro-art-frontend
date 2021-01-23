@@ -3,6 +3,8 @@ import {Tools} from '../../utils/tools'
 import './login.less'
 import google from '../../asset/img/logo_google.png'
 import github from '../../asset/img/logo_github.png'
+import { Divider, Form, Input, Button } from 'antd'
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 export default function Login() {
     const [initGoogle, setInitGoole] = useState(false)
@@ -64,6 +66,11 @@ export default function Login() {
       // 登录开新窗口
       window.open(Tools.initGithubAuth(), "", "height=600, width=700")
     }
+
+    const onFinish = (values) => {
+        console.log('Received values of form: ', values);
+    };
+
     return(
         <React.Fragment>
             <div className="loginWrapper">
@@ -73,8 +80,55 @@ export default function Login() {
                     </h2>
                     <div className="login_title_des">Your are the next artist!</div>
                 </div>
-                <div className="oauth_platform">
-                    <div className="btnWrapper">
+                <div className="login_content">
+                    <div className="loginFormWrapper">
+                        <Form
+                            name="normal_login"
+                            className="login-form"
+                            initialValues={{
+                                remember: true,
+                            }}
+                            onFinish={onFinish}
+                            >
+                            <Form.Item
+                                name="email"
+                                rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your Email!',
+                                },
+                                ]}
+                            >
+                                <Input prefix={<UserOutlined className="site-form-item-icon" />} size="large" placeholder="邮箱" />
+                            </Form.Item>
+                            <Form.Item
+                                name="password"
+                                rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your Password!',
+                                },
+                                ]}
+                            >
+                                <Input
+                                prefix={<LockOutlined className="site-form-item-icon" />}
+                                type="password"
+                                placeholder="密码"
+                                size="large"
+                                />
+                            </Form.Item>
+                            <Form.Item>
+                                <a className="login-form-forgot" href="123">
+                                     Forgot password?
+                                </a>
+                                <Button type="primary" shape="round"  size='large'  htmlType="submit" className="login-form-button">
+                                Log in
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                    </div>
+                    <Divider plain><span className="thridPatry_title">或者使用第三方账号登录</span></Divider>
+                    <div className="thridPatryWrapper">
                         <div className="signinGoogle" id="signin-google" onClick={e => onGooleClick(e)}><img className="google" src={google} alt="google"></img>Google 登录</div>
                         <div className="signinGoogle"  onClick={e => onGithubClick(e)}><img className="google" src={github} alt="github"></img>Github 登录</div>
                     </div>
