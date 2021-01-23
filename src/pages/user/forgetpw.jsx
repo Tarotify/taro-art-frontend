@@ -1,6 +1,6 @@
 import React from 'react'
 import { Divider, Form, Input, Button} from 'antd'
-import './reg.less'
+import './forgetpw.less'
 import { Link } from "react-router-dom";
 import { UserOutlined } from '@ant-design/icons';
 
@@ -10,7 +10,7 @@ export default function Reg () {
             <div className="regWrapper">
                 <div className="reg_title">
                     <h2>
-                        <strong>Regsiter Account</strong>
+                        <strong>Find Password</strong>
                     </h2>
                     <div className="reg_title_des">Your are the next artist!</div>
                 </div>
@@ -37,14 +37,14 @@ export default function Reg () {
                             </Form.Item>
                             <Form.Item>
                                 <Button type="primary" shape="round"  size='large'  htmlType="submit" className="reg-form-button">
-                                    Register
+                                    Send
                                 </Button>
                             </Form.Item>
                         </Form>
                     </div>
                     <Divider></Divider>
                     <div  className="tologin">
-                        已有账号了？<Link to="/user/login">点击这里登录</Link>
+                        记得账号密码了~ <Link to="/user/login">点击这里登录</Link>
                     </div>
                 </div>
             </div>

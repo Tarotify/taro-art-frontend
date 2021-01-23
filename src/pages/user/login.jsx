@@ -5,6 +5,7 @@ import google from '../../asset/img/logo_google.png'
 import github from '../../asset/img/logo_github.png'
 import { Divider, Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const [initGoogle, setInitGoole] = useState(false)
@@ -118,9 +119,9 @@ export default function Login() {
                                 />
                             </Form.Item>
                             <Form.Item>
-                                <a className="login-form-forgot" href="123">
+                                <Link className="login-form-forgot" to="/user/forgetpassword">
                                      Forgot password?
-                                </a>
+                                </Link>
                                 <Button type="primary" shape="round"  size='large'  htmlType="submit" className="login-form-button">
                                 Log in
                                 </Button>
@@ -131,6 +132,9 @@ export default function Login() {
                     <div className="thridPatryWrapper">
                         <div className="signinGoogle" id="signin-google" onClick={e => onGooleClick(e)}><img className="google" src={google} alt="google"></img>Google 登录</div>
                         <div className="signinGoogle"  onClick={e => onGithubClick(e)}><img className="google" src={github} alt="github"></img>Github 登录</div>
+                    </div>
+                    <div className="toRegister">
+                        还没有账号？<Link to="/user/reg">点击加入Taro大家庭</Link>
                     </div>
                 </div>
             </div>
