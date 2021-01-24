@@ -17,6 +17,8 @@ export const Tools = {
 
     initGithubAuth() {
         const scope = 'user:email,read:user'
-        return `https://github.com/login/oauth/authorize?client_id=${Var.github_client_id}&scope=${scope}`
+        // 注意还是得在github设置callback地址
+        const redirect_uri = 'http://localhost:3000/user/oauth/validating'
+        return `https://github.com/login/oauth/authorize?client_id=${Var.github_client_id}&scope=${scope}&redirect_uri=${redirect_uri}`
     } 
 }                                            

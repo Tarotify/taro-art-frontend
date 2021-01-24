@@ -64,8 +64,12 @@ export default function Login() {
     }
   
     const onGithubClick = (e) => {
+      const iHeight = 600
+      const iWidth = 700
+      const iTop = (window.screen.availHeight-30-iHeight)/2; //获得窗口的垂直位置;
+      const iLeft = (window.screen.availWidth-10-iWidth)/2; //获得窗口的水平位置;
       // 登录开新窗口
-      window.open(Tools.initGithubAuth(), "", "height=600, width=700")
+      window.open(Tools.initGithubAuth(), "", `top=${iTop}, left=${iLeft} height=${iHeight}, width=${iWidth}`)
     }
 
     const onFinish = (values) => {
