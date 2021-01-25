@@ -22,6 +22,9 @@ export default function AuthLoading() {
         if(code !== '') {
             console.log(code)
             // window.close()
+            fetch('http://localhost:5000/api/common/test').then(response => {
+                console.log(response.json().data)
+            })
         }
     },[code])
 

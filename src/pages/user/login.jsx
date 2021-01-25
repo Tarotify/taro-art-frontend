@@ -6,10 +6,20 @@ import github from '../../asset/img/logo_github.png'
 import { Divider, Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
+import { testGet } from '../../api/oauth'
 
 export default function Login() {
     const [initGoogle, setInitGoole] = useState(false)
     const [githubCode, setGithubCode] = useState('')
+
+    useEffect(() => {
+      testGet().then( res => {
+        console.log(res)
+      })
+    }, [])
+
+
+
     useEffect(() => {
       const showGoogleAuth = (GoogleAuth) => {
         if (typeof GoogleAuth === 'undefined') return
