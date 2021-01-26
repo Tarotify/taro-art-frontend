@@ -3,8 +3,10 @@ import { LoadingOutlined } from '@ant-design/icons';
 import './loading.less'
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import { githubCodeAuth } from '../../api/oauth/index'
+import { Storage } from '../../utils/tools'
 
-export default function AuthLoading() {
+export default function Oauthloading() {
     const antIcon = <LoadingOutlined style={{ fontSize: 60 }} spin />
     const param =  useLocation().search
     const [code, setcode] = useState('')
@@ -21,9 +23,16 @@ export default function AuthLoading() {
     useEffect(() => {
         if(code !== '') {
             console.log(code)
-            // window.close()
-            fetch('http://localhost:5000/api/common/test').then(response => {
-                console.log(response.json().data)
+            // window.close()   
+            const data ={ code }
+            githubCodeAuth(data).then(res => {
+                console.log(res)
+                if(res.status_code === 200) {
+                    // if(res.data.user_verify ==) {
+                        Storage.setLocal('taro_user_verify', res.data)
+                        window.close()
+                    // }
+                }
             })
         }
     },[code])

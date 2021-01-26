@@ -1,24 +1,39 @@
 import React, {useState, useEffect} from 'react'
-import {Tools} from '../../utils/tools'
+import { Tools, Storage } from '../../utils/tools'
 import './login.less'
 import google from '../../asset/img/logo_google.png'
 import github from '../../asset/img/logo_github.png'
 import { Divider, Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { testGet } from '../../api/oauth'
+
 
 export default function Login() {
     const [initGoogle, setInitGoole] = useState(false)
-    const [githubCode, setGithubCode] = useState('')
+    const [loginStatus, setLogInStatus] = useState(false)
+    const history = useHistory()
 
     useEffect(() => {
-      testGet().then( res => {
-        console.log(res)
-      })
-    }, [])
-
-
+      if(loginStatus) {
+        const githubOauthIntervel = setInterval(() => {
+          const result = Storage.getLocal('taro_user_verify')
+          if (result !== null) {
+            console.log('验证通过将跳转....')
+            // 不同的user_verify 挑转不同的地方
+            if(result.user_verify === 0) {
+              // 引导去填email
+              history.push('/user/reg/bindemail')
+            }
+          }
+        }, 1500);
+        return () => {
+          clearInterval(githubOauthIntervel)
+        }
+      }else{
+        return null
+      }
+    }, [loginStatus])
 
     useEffect(() => {
       const showGoogleAuth = (GoogleAuth) => {
@@ -59,13 +74,6 @@ export default function Login() {
       console.log(token)
     }
   
-    useEffect(() => {
-      if (window.location.search !== undefined) {
-        setGithubCode(window.location.search.split('code=')[1])
-      }
-      console.log(githubCode)
-    }, [githubCode])
-  
     const onGooleClick = (e) => {
       if(initGoogle === false) {
         console.log('google登录初始化失败')
@@ -80,7 +88,17 @@ export default function Login() {
       const iLeft = (window.screen.availWidth-10-iWidth)/2; //获得窗口的水平位置;
       // 登录开新窗口
       window.open(Tools.initGithubAuth(), "", `top=${iTop}, left=${iLeft} height=${iHeight}, width=${iWidth}`)
+      // 推进状态开始监听localStroge里的验证值
+      setLogInStatus(true)
     }
+
+    // useEffect(() => {
+    //   window.addEventListener('message', (event) => {
+    //     if(event.origin === 'http://localhost:3000') {
+    //       console.log(event.data)
+    //     }
+    //   })
+    // }, [])
 
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
