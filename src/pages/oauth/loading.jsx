@@ -29,6 +29,7 @@ export default function Oauthloading() {
                 console.log(res)
                 if(res.status_code === 200) {
                     // if(res.data.user_verify ==) {
+                        // 更新storage
                         Storage.setLocal('taro_user_verify', res.data)
                         window.close()
                     // }

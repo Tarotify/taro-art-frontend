@@ -16,8 +16,9 @@ export default function RegBind () {
             history.replace('/')
         }
     },[])
-    const onFinish = () => {
-
+    const onFinish = (value) => {
+        const data = {...value, ...userInfo}
+        console.log(data)
     }
     if (userInfo === null) {
         return null
