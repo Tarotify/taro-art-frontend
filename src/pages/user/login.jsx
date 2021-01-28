@@ -14,6 +14,7 @@ export default function Login() {
     const [loginStatus, setLogInStatus] = useState(false)
     const history = useHistory()
 
+    // 登录状态改变 开始监听storage
     useEffect(() => {
       if(loginStatus) {
         const githubOauthIntervel = setInterval(() => {
@@ -24,6 +25,10 @@ export default function Login() {
             if(result.user_verify === 0) {
               // 引导去填email
               history.push('/user/reg/bindemail')
+            }
+            if(result.user_verify === 99) {
+              // 引导去填email
+              history.push('/')
             }
           }
         }, 1500);

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Divider, Form, Input, Button} from 'antd'
+import { Form, Input, Button} from 'antd'
 import './reg.less'
 import { useHistory } from "react-router-dom";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Storage } from '../../utils/tools'
+import { userRegBind } from '../../api/user'
 
 export default function RegBind () {
     const [userInfo, setUserInfo] = useState(null)
@@ -26,6 +27,13 @@ export default function RegBind () {
     const onStepTwoFinish = (value) => {
         const data = {...value, ...userInfo}
         console.log(data)  
+        userRegBind(data).then(res => {
+            console.log(res)
+            if(res.status_code === 200) {
+                Storage.setCookie('_TARO_TOKEN_', res.token, 10)
+                history.push('/')
+            }
+        })
     }
 
     if (userInfo === null) {
@@ -104,6 +112,14 @@ export default function RegBind () {
                                     {
                                         required: true,
                                         message: 'Please input your Password!',
+                                    },
+                                    {
+                                        whitespace: true,
+                                        message: 'Password cannot contain space!',
+                                    },
+                                    {
+                                        min: 6,
+                                        message: 'Password should be at least 6 characters',
                                     },
                                     ]}
                                     hasFeedback

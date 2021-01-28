@@ -133,5 +133,22 @@ export const Storage = {
     },
     sessionClearAll(){
         sessionStorage.clear();
+    },
+
+    setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        const expires = "expires="+d.toGMTString();
+        document.cookie = cname+"="+cvalue+"; "+expires;
+    },
+
+    getCookie(cname) {
+        const name = cname + "=";
+        let cookiesArr = document.cookie.split(';');
+        for(let i=0; i<cookiesArr.length; i++) {
+            const c = cookiesArr[i].trim();
+            if (c.indexOf(name)==0) { return c.substring(name.length,c.length); }
+        }
+        return "";
     }
 }
