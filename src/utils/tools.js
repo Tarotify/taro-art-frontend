@@ -31,7 +31,30 @@ export const Tools = {
         // 注意还是得在github设置callback地址
         const redirect_uri = 'http://localhost:3000/user/oauth/validating'
         return `https://github.com/login/oauth/authorize?client_id=${Var.github_client_id}&scope=${scope}&redirect_uri=${redirect_uri}`
-    } 
+    }, 
+
+    setToken(cvalue, cname='__TaroToken__', exdays=7) {
+        const d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        const expires = "expires="+d.toGMTString();
+        document.cookie = cname+"="+cvalue+"; "+expires;
+    },
+
+    getToken(cname='__TaroToken__') {
+        const name = cname + "=";
+        let cookiesArr = document.cookie.split(';');
+        for(let i=0; i<cookiesArr.length; i++) {
+            const c = cookiesArr[i].trim();
+            if (c.indexOf(name)===0) { return c.substring(name.length,c.length); }
+        }
+        return "";
+    },
+
+    userLogout() {
+        let exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        document.cookie=`__TaroToken__=;expires=${exp.toGMTString()}`;
+    }
 }   
 
 export const Storage = {
@@ -147,7 +170,7 @@ export const Storage = {
         let cookiesArr = document.cookie.split(';');
         for(let i=0; i<cookiesArr.length; i++) {
             const c = cookiesArr[i].trim();
-            if (c.indexOf(name)==0) { return c.substring(name.length,c.length); }
+            if (c.indexOf(name)===0) { return c.substring(name.length,c.length); }
         }
         return "";
     }

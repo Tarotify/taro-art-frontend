@@ -27,7 +27,8 @@ export default function Login() {
               history.push('/user/reg/bindemail')
             }
             if(result.user_verify === 99) {
-              // 引导去填email
+              // 登录成功， 存token
+              Tools.setToken(result.token)
               history.push('/')
             }
           }

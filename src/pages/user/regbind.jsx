@@ -3,7 +3,7 @@ import { Form, Input, Button} from 'antd'
 import './reg.less'
 import { useHistory } from "react-router-dom";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Storage } from '../../utils/tools'
+import { Storage, Tools } from '../../utils/tools'
 import { userRegBind } from '../../api/user'
 
 export default function RegBind () {
@@ -30,7 +30,7 @@ export default function RegBind () {
         userRegBind(data).then(res => {
             console.log(res)
             if(res.status_code === 200) {
-                Storage.setCookie('_TARO_TOKEN_', res.token, 10)
+                Tools.setToken(res.token)
                 history.push('/')
             }
         })
@@ -55,7 +55,7 @@ export default function RegBind () {
                                 name="email_bind"
                                 className="reg-form"
                                 initialValues={{
-                                    remember: true,
+                                    email: userInfo.email,
                                 }}
                                 onFinish={onStepOneFinish}
                                 >
@@ -101,9 +101,6 @@ export default function RegBind () {
                             <Form
                                 name="password_confirm"
                                 className="reg-form"
-                                initialValues={{
-                                    remember: true,
-                                }}
                                 onFinish={onStepTwoFinish}
                                 >
                                <Form.Item
