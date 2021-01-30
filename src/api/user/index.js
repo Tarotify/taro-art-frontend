@@ -9,3 +9,13 @@ export function getSession(data) {
     const  url = 'user/session'
     return post(url,data)
 }
+
+export function userVerifyAccount(data) {
+    const  url = 'user/password/pre_reset'
+    return post(url,data)
+}
+
+export function userPasswordReset(data) {
+    const url = 'user/password/reset'
+    return post(url,data)
+}

@@ -6,7 +6,8 @@ import { message } from 'antd'
 
 axios.defaults.timeout = 100000;
 axios.defaults.baseURL = "http://localhost:5000/api/";
-
+axios.defaults.withCredentials = true  // nodejs和vue启动的端口不同，所以使用了cors跨域，影响了cookie的设置。 
+                                      // 解决浏览器set-cookie显示有内容，但没写入cookie
 /**
  * http request 拦截器
  */
