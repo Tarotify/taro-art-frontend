@@ -50,7 +50,7 @@ export default function Index() {
                 <h1>Tarotify</h1>
                 { userInfo === null &&
                     <div className="demoLogin">
-                        <Button type="round" icon={<LoginOutlined color="#bd7cc6" />}><Link to="/user/login"><span style={{paddingLeft:10, color: '#555'}}>登录 / Login</span></Link></Button>
+                        <Button type="round" icon={<LoginOutlined color="#bd7cc6" />}><Link to="/user/login"><span className="loginspan">登录 / Login</span></Link></Button>
                     </div>
                 }
                 { userInfo !== null &&

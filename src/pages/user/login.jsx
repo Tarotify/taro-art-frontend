@@ -29,7 +29,7 @@ export default function Login() {
             if(result.user_verify === 99) {
               // 登录成功， 存token
               Tools.setToken(result.token)
-              message.success('登录成功', 2,  history.push('/'));
+              message.success('登录成功', 2, history.push('/'));
             }
           }
         }, 1500);
@@ -145,11 +145,16 @@ export default function Login() {
                             >
                             <Form.Item
                                 name="email"
+                                hasFeedback
                                 rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your Email!',
-                                },
+                                    {
+                                        required: true,
+                                        message: 'Please input your email!',
+                                    },
+                                    {
+                                        type: 'email',
+                                        message: 'Please input correct email format!',
+                                    }
                                 ]}
                             >
                                 <Input prefix={<UserOutlined className="site-form-item-icon" />} size="large" placeholder="邮箱" />
@@ -161,7 +166,16 @@ export default function Login() {
                                     required: true,
                                     message: 'Please input your Password!',
                                 },
+                                {
+                                    whitespace: true,
+                                    message: 'Password cannot contain space!',
+                                },
+                                {
+                                    min: 6,
+                                    message: 'Password should be at least 6 characters',
+                                },
                                 ]}
+                                hasFeedback
                             >
                                 <Input
                                 prefix={<LockOutlined className="site-form-item-icon" />}
