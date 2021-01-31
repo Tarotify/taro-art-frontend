@@ -15,7 +15,6 @@ export default function Index() {
         if(token !== '') {
             getSession({token}).then(res => {
                 if (res.status_code === 200) {
-                    console.log(res.data)
                     SetUserInfo(res.data)
                 }
             })
