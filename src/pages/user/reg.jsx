@@ -4,9 +4,10 @@ import './reg.less'
 import { Link, useHistory } from "react-router-dom";
 import { UserOutlined, LockOutlined, SafetyOutlined, MailOutlined, PhoneOutlined, CalendarOutlined } from '@ant-design/icons';
 import { userRegCheck, userReg } from '../../api/user'
+import { Tools } from '../../utils/tools'
 
 export default function Reg () {
-    const [step, setStep] = useState(2)
+    const [step, setStep] = useState(1)
     const [userInfo, setUserInfo] = useState(null)
     const history = useHistory()
 
@@ -31,8 +32,10 @@ export default function Reg () {
         })
     }
 
-    const onStepTwoFinish = (value) => {
-        const data = {...value, ...userInfo}
+    const onStepTwoFinish = (values) => {
+        // 没填电话
+        values.phone = values.phone === undefined ? '': values.phone
+        const data = {...values, ...userInfo}
         userReg(data).then(res => {
             if(res.status_code === 401) {
                 message.warning('验证码错误',5);
@@ -41,8 +44,8 @@ export default function Reg () {
                 message.warning('重设密码错误,请联系admin@taro.com',10);
             }
             if(res.status_code === 200 ) {
-                message.success('密码重设成功');
-                history.push('/user/login')
+                Tools.setToken(res.token)
+                message.success('注册成功', 2, history.push('/'));
             }
         })        
     }
@@ -69,10 +72,15 @@ export default function Reg () {
                             >
                             <Form.Item
                                 name="email"
+                                hasFeedback
                                 rules={[
                                     {
                                         required: true,
                                         message: 'Please input your email!',
+                                    },
+                                    {
+                                        type: 'email',
+                                        message: 'Please input correct email format!',
                                     }
                                 ]}
                             >
@@ -111,7 +119,7 @@ export default function Reg () {
                             onFinish={onStepTwoFinish}
                             >
                             <Form.Item
-                                name="username"
+                                name="name"
                                 rules={[
                                 {
                                     required: true,

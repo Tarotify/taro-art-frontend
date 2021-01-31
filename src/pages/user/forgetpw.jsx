@@ -70,15 +70,16 @@ export default function Forgetpw () {
                             >
                             <Form.Item
                                 name="email"
+                                hasFeedback
                                 rules={[
                                 {
                                     required: true,
                                     message: 'Please input your email!',
                                 },
-                                // {
-                                //     type: 'email',
-                                //     message: 'Please input correct email format!',
-                                // }
+                                {
+                                    type: 'email',
+                                    message: 'Please input correct email format!',
+                                }
                                 ]}
                             >
                                 <Input prefix={<UserOutlined className="site-form-item-icon" />} size="large" placeholder="邮箱" />
