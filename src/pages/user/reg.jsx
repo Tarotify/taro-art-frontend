@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Divider, Form, Input, Button, message, notification} from 'antd'
+import { Divider, Form, Input, InputNumber, Button, message, notification} from 'antd'
 import './reg.less'
 import { Link, useHistory } from "react-router-dom";
-import { UserOutlined, LockOutlined, SafetyOutlined, MailOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, SafetyOutlined, MailOutlined, PhoneOutlined, CalendarOutlined } from '@ant-design/icons';
 import { userRegCheck, userReg } from '../../api/user'
 
 export default function Reg () {
-    const [step, setStep] = useState(1)
+    const [step, setStep] = useState(2)
     const [userInfo, setUserInfo] = useState(null)
     const history = useHistory()
 
@@ -96,9 +96,9 @@ export default function Reg () {
             <div className="regWrapper">
                 <div className="reg_title">
                     <h2>
-                        <strong>Reset Password</strong>
+                        <strong>Account Information</strong>
                     </h2>
-                    <div className="reg_title_des">verify your email with code</div>
+                    <div className="reg_title_des">Fill your profile</div>
                 </div>
                 <div className="reg_content">
                 <div className="regFormWrapper">
@@ -111,16 +111,37 @@ export default function Reg () {
                             onFinish={onStepTwoFinish}
                             >
                             <Form.Item
-                                name="code"
+                                name="username"
                                 rules={[
                                 {
                                     required: true,
-                                    message: 'Please input verify code!',
+                                    message: 'Please input your username!',
                                 },
                                 ]}
-                                hasFeedback
                             >
-                                <Input prefix={<SafetyOutlined className="site-form-item-icon" />} size="large" placeholder="验证码" />
+                                <Input prefix={<UserOutlined className="site-form-item-icon" />} size="large" placeholder="昵称" />
+                            </Form.Item>
+                            <Form.Item
+                                name="age"
+                                rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your age!',
+                                },
+                                ]}
+                            >
+                                <Input prefix={<CalendarOutlined className="site-form-item-icon" />} size="large" placeholder="年龄" />
+                            </Form.Item>
+                            <Form.Item
+                                name="phone"
+                                // rules={[
+                                // {
+                                //     required: true,
+                                //     message: 'Please input your phone!',
+                                // },
+                                // ]}
+                            >
+                                <Input prefix={<PhoneOutlined className="site-form-item-icon" />} size="large" placeholder="手机号（选填）" />
                             </Form.Item>
                             <Form.Item
                                 name="password"
@@ -172,6 +193,18 @@ export default function Reg () {
                                     placeholder="二次确认密码"
                                     size="large"
                                 />
+                            </Form.Item>
+                            <Form.Item
+                                name="code"
+                                rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input verify code!',
+                                },
+                                ]}
+                                hasFeedback
+                            >
+                                <Input prefix={<SafetyOutlined className="site-form-item-icon" />} size="large" placeholder="验证码" />
                             </Form.Item>
                             <Form.Item>
                                 <Button type="primary" shape="round"  size='large'  htmlType="submit" className="reg-form-button">
