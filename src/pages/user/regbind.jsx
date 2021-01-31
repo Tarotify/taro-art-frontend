@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Input, Button} from 'antd'
+import { Form, Input, Button, message} from 'antd'
 import './reg.less'
 import { useHistory } from "react-router-dom";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -31,7 +31,7 @@ export default function RegBind () {
             console.log(res)
             if(res.status_code === 200) {
                 Tools.setToken(res.token)
-                history.push('/')
+                message.success('登录成功', 2,  history.push('/'));
             }
         })
     }
@@ -103,7 +103,7 @@ export default function RegBind () {
                                 className="reg-form"
                                 onFinish={onStepTwoFinish}
                                 >
-                               <Form.Item
+                                <Form.Item
                                     name="password"
                                     rules={[
                                     {

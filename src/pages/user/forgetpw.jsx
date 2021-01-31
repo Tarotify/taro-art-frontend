@@ -4,9 +4,9 @@ import './forgetpw.less'
 import { Link, useHistory } from "react-router-dom";
 import { UserOutlined, LockOutlined, SafetyOutlined, MailOutlined } from '@ant-design/icons';
 import { userVerifyAccount, userPasswordReset } from '../../api/user'
-import { Storage } from '../../utils/tools'
+// import { Storage } from '../../utils/tools'
 
-export default function Reg () {
+export default function Forgetpw () {
     const [step, setStep] = useState(1)
     const [userInfo, setUserInfo] = useState(null)
     const history = useHistory()

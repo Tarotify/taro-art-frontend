@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Tools, Storage } from '../../utils/tools'
+import { Tools } from '../../utils/tools'
 import { Button, Avatar, Dropdown, Menu } from 'antd';
 import { Link } from 'react-router-dom'
 import './index.less'
@@ -20,9 +20,10 @@ export default function Index() {
                 }
             })
         }
-    }, [userInfo])
+    }, [])
 
     const handleLogout = () => {
+        //清除token
         Tools.userLogout()
         setTimeout(() => {
             SetUserInfo(null)

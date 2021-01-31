@@ -8,7 +8,7 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: {
             // 自定义antd 主题色
-            modifyVars: { '@primary-color': '#bd7cc6' },
+            modifyVars: { '@primary-color': '#471A66' },
             javascriptEnabled: true,
           },
         },

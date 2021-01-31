@@ -3,10 +3,10 @@ import { Tools, Storage } from '../../utils/tools'
 import './login.less'
 import google from '../../asset/img/logo_google.png'
 import github from '../../asset/img/logo_github.png'
-import { Divider, Form, Input, Button } from 'antd'
+import { Divider, Form, Input, Button, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useHistory } from "react-router-dom";
-import { testGet } from '../../api/oauth'
+import { userLogin } from '../../api/user'
 
 
 export default function Login() {
@@ -29,7 +29,7 @@ export default function Login() {
             if(result.user_verify === 99) {
               // 登录成功， 存token
               Tools.setToken(result.token)
-              history.push('/')
+              message.success('登录成功', 2,  history.push('/'));
             }
           }
         }, 1500);
@@ -107,6 +107,20 @@ export default function Login() {
     // }, [])
 
     const onFinish = (values) => {
+      userLogin(values).then(res => {
+        if(res.status_code === 200) {
+          Tools.setToken(res.data.token)
+          message.success('登录成功', 2,  history.push('/'));
+        }
+        if(res.status_code === 400 ){
+          message.warning('该邮箱未注册', 4);
+          return null
+        }
+        if(res.status_code === 401 ){
+          message.warning('密码不正确', 4);
+          return null
+        }
+      })
         console.log('Received values of form: ', values);
     };
 
