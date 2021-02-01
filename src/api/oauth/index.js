@@ -15,3 +15,12 @@ export function githubCodeAuth(data) {
         data
     )
 }
+
+
+export function userGoogleAuth(data) {
+    const url = 'oauth/google/tokenAuth'
+    return post(
+        url,
+        data
+    )
+}

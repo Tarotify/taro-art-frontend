@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Divider, Form, Input, InputNumber, Button, message, notification} from 'antd'
+import { Divider, Form, Input, Button, message, notification} from 'antd'
 import './reg.less'
 import { Link, useHistory } from "react-router-dom";
 import { UserOutlined, LockOutlined, SafetyOutlined, MailOutlined, PhoneOutlined, CalendarOutlined } from '@ant-design/icons';

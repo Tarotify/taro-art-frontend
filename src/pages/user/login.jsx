@@ -7,6 +7,7 @@ import { Divider, Form, Input, Button, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useHistory } from "react-router-dom";
 import { userLogin } from '../../api/user'
+import { userGoogleAuth } from '../../api/oauth'
 
 
 export default function Login() {
@@ -69,15 +70,27 @@ export default function Login() {
    
     const handleGoogleCallback = token => {
       // 调后端接口，把token传给后端，后端再用token来向google验证
-      // dispatch({
-      //   type:'user/loginGoogle',
-      //   payload: {
-      //     token: token,
-      //   }
-      // }).then(res => {
-      //   console.log(res)
-      // })
-      console.log(token)
+      const data = {
+        token: token
+      }
+      userGoogleAuth(data).then(res => {
+        if(res.status_code === 200 && res.data.user_verify === 99 ){
+          // 登录成功了
+          Tools.setToken(res.data.token)
+          message.success('登录成功', 2,  history.push('/'));
+        }
+        if(res.status_code === 200 && res.data.user_verify === 0 ){
+          // 登录成功了
+          Tools.setToken(res.data.token)
+          message.success('欢迎使用Taro', 2,  history.push('/'));
+        }
+        if(res.status_code === 401 || res.status_code === 403) {
+          message.warning('google登录授权失败', 4);
+        }
+        if(res.status_code === 400 || res.status_code === 500) {
+          message.warning('系统错误，请联系admin@taro.com', 4);
+        }
+      })
     }
   
     const onGooleClick = (e) => {
@@ -98,6 +111,7 @@ export default function Login() {
       setLogInStatus(true)
     }
 
+    // postMessage 通信
     // useEffect(() => {
     //   window.addEventListener('message', (event) => {
     //     if(event.origin === 'http://localhost:3000') {

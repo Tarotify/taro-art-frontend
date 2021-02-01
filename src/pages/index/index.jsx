@@ -8,7 +8,7 @@ import { UserOutlined, LogoutOutlined, LoginOutlined } from '@ant-design/icons';
 
 
 export default function Index() {
-    const [ userInfo, SetUserInfo ] = useState(null)
+    const [ userInfo, SetUserInfo ] = useState(undefined)
 
     useEffect(() => {
         const token = Tools.getToken()
@@ -18,6 +18,8 @@ export default function Index() {
                     SetUserInfo(res.data)
                 }
             })
+        }else{
+            SetUserInfo(null)
         }
     }, [])
 
@@ -52,7 +54,7 @@ export default function Index() {
                         <Button type="round" icon={<LoginOutlined color="#bd7cc6" />}><Link to="/user/login"><span className="loginspan">登录 / Login</span></Link></Button>
                     </div>
                 }
-                { userInfo !== null &&
+                { userInfo !== null && userInfo !== undefined &&
                     <div className="demoLogin">
                         <Dropdown overlayClassName="dropdownMenu" overlay={menu} trigger={['click']}>
                             <Avatar className="avatar" size={40} src={userInfo.avatar} />
