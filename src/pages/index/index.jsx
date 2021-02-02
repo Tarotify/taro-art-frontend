@@ -25,10 +25,9 @@ export default function Index() {
 
     const handleLogout = () => {
         //清除token
+        console.log('退出了')
         Tools.userLogout()
-        setTimeout(() => {
-            SetUserInfo(null)
-        }, 500);
+        SetUserInfo(null)
     }
     const menu = (
         <Menu className="menu">

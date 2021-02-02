@@ -1,0 +1,136 @@
+.wrapper {
+    background: #f0f2f5;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+.profileContainer {
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 7px;
+    margin: 40px auto;
+    padding: 20px 0;
+    display: flex;
+    height: 100vh;
+    width: 93%;
+    overflow: hidden;
+    .leftMenu {
+        margin: 0;
+        .menu {
+            min-height: 100%;
+        }
+    }
+    .right {
+        flex: 1 1;
+        padding: 8px 40px;
+        margin: 0;
+        .profiletitle{
+            font-size: 20px;
+            font-weight: 600;
+            color: #000;
+            letter-spacing: 1px;
+            .regTypetag{
+                text-align: center;
+                width: 95px;
+                height: 22px;
+                line-height: 22px;
+                border-radius: 8px;
+                font-size: 14px;
+                margin-left: 5px;
+            }
+        }
+        .basicWrapper{
+            display: flex;
+            padding-top: 10px;
+            .infoForm{
+                margin: 0;
+                margin-left:30px;
+                max-width:750px;
+                .setting_form{
+                    width:570px;
+                    margin: 10px auto;
+                    padding: 20px;
+                    padding-top: 0px;
+                    padding-bottom: 10px;
+                    .setting_form_item{
+                          margin-bottom: 15px;
+                         .ant-col.ant-form-item-label{
+                            margin: 0;
+                            margin-right: 0px;
+                            margin-bottom: 2px;
+                          }
+                         .ant-col.ant-form-item-control{
+                             margin-left: 5px;
+                          }
+                          .ant-form-item-control-input{
+                             margin: 0;
+                          }
+                          .select_input{
+                            width: 300px;
+                            .ant-select-selection-placeholder{
+                               margin: 0;
+                            }
+                         }
+                         .select_inputNumber{
+                            width: 240px;
+                        }
+                         .saveButton{
+                            display: block;
+                            width: 300px;
+                            border-radius: 10px;
+                            align-content: center;
+                            height: 33px;
+                            span{
+                                font-size: 18px;
+                                line-height: 0px;
+                            }
+                         }
+                       }
+                   
+                }                 
+            }
+            .userAvatar{
+                margin: 0;
+                .avataTitle{
+                    color: #000;
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
+        }
+        .securityList{
+            padding-top: 20px;
+            .ant-list-item-meta-title{
+                color: #000;
+                font-weight: 600;
+                font-size: 15px;
+            }
+        }
+        .BindingList {
+            padding-top: 20px;
+            .ant-list-item-meta-title{
+                color: #000;
+                font-weight: 600;
+                font-size: 15px;
+            }
+            .fb {
+                color: #3b5999;
+                font-size: 30px;
+            }
+            .gg {
+                color: #dd4b39;
+                font-size: 30px;
+            }
+            .tw {
+                color: #55acee;
+                font-size: 30px;
+            }
+            .ant-avatar{
+                background: #fff;
+            }
+        }
+        .result{
+            margin-top: 70px;
+        }
+    }
+}
