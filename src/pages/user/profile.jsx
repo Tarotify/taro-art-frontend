@@ -229,7 +229,7 @@ export default function UserProfile() {
             <div className="right">
                 {  key === 'Basic'  && userData !=={} &&
                         <>
-                            <div className="profiletitle">Basic Settings <Tag color="blue" className="regTypetag"> {userType}</Tag> </div>
+                            <div className="profiletitle">Basic Settings</div>
                             <div className="basicWrapper">
                                 <div className="infoForm">
                                     <Form
@@ -242,41 +242,26 @@ export default function UserProfile() {
                                         >
                                     <Form.Item
                                         className="setting_form_item"
-                                        name="firstName"
-                                        label="First Name"
+                                        name="name"
+                                        label="User name"
                                         hasFeedback
                                         rules={[
                                         {
                                             required: true,
-                                            message: 'Please input your first name!',
+                                            message: 'Please input your username!',
                                         },
                                         ]}
                                     >
-                                    <Input placeholder="first name" className="select_input">
+                                    <Input placeholder="username" className="select_input">
                                     </Input>
-                                    </Form.Item>
+                                    </Form.Item>                               
                                     <Form.Item
                                         className="setting_form_item"
-                                        name="lastName"
-                                        label="Last Name"
-                                        hasFeedback
-                                        rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please input your last name!',
-                                        },
-                                        ]}
-                                    >
-                                    <Input placeholder="last name" className="select_input">
-                                    </Input>
-                                    </Form.Item>
-                                    <Form.Item
-                                        className="setting_form_item"
-                                        name="nickName"
-                                        label=" Nickname"
+                                        name="age"
+                                        label=" Age"
                                         hasFeedback
                                     >
-                                    <Input placeholder="nickname" className="select_input">
+                                    <Input placeholder="Your age" className="select_input">
                                     </Input>
                                     </Form.Item>
                                     <Form.Item
@@ -351,10 +336,15 @@ export default function UserProfile() {
                                     >
                                         <InputNumber min={1} max={10} defaultValue={3} className="select_inputNumber" />
                                     </Form.Item>
-                                    <Form.Item className="setting_form_item">
+                                    {/* <Form.Item className="setting_form_item">
                                                 <Button type="primary" htmlType="submit" className="saveButton">
                                                 <span>save</span>
                                                 </Button>
+                                    </Form.Item> */}
+                                    <Form.Item className="setting_form_item">
+                                            <Button type="primary" shape="round"  size='large'  htmlType="submit" className="saveButton">
+                                                Confirm
+                                            </Button>
                                     </Form.Item>
                                     </Form>
                                 </div>
