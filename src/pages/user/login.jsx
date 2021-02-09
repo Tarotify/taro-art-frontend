@@ -214,7 +214,7 @@ export default function Login() {
                         <div className="signinGoogle"  onClick={e => onGithubClick(e)}><img className="google" src={github} alt="github"></img>Github 登录</div>
                     </div>
                     <div className="toRegister">
-                        还没有账号？<Link to="/user/reg">点击加入Taro大家庭</Link>
+                        还没有账号？<Link className="reg_link" to="/user/reg">点击加入Taro大家庭</Link>
                     </div>
                 </div>
             </div>
