@@ -9,10 +9,8 @@ import { UserOutlined, LogoutOutlined, LoginOutlined } from '@ant-design/icons';
 
 export default function Index() {
     const [ userInfo, SetUserInfo ] = useState(undefined)
-
+    const token = Tools.getToken()
     useEffect(() => {
-        const token = Tools.getToken()
-        console.log(token)
         if(token !== '') {
             getSession({token}).then(res => {
                 if (res.status_code === 200) {
@@ -22,7 +20,7 @@ export default function Index() {
         }else{
             SetUserInfo(null)
         }
-    }, [])
+    }, [token])
 
     const handleLogout = () => {
         //清除token

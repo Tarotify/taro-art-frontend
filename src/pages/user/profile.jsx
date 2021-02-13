@@ -32,7 +32,7 @@ export default function UserProfile() {
                 setUserData(res.data)
             }
         })
-    }, [userData])
+    }, [])
     
     useEffect(() => {
         // const updated = Tools.loadUserInfo('user_Info')
