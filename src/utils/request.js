@@ -16,20 +16,18 @@ axios.interceptors.request.use(
     (config) => {
       config.data = JSON.stringify(config.data);
       // 还没对formData处理
+      // ....
+      // 每次请求都会去getToken检测用户是否登录状态; 对应后端的checkLoginStatus
       const token = Tools.getToken()
-      console.log(token)
-      if(token !== '') {
-        config.headers = {
-          "Content-Type": "application/json",
-          "Authorization":token
-        };
-      } else {
-        config.headers = {
-          "Content-Type": "application/json",
-        };
-      }
-      // // 每次请求放入token
-      // config.headers.auth = token
+      token === '' ? config.headers = {
+        "Content-Type": "application/json",
+      } : config.headers = {
+        // 每次请求放入token
+        // config.headers.auth = token
+        "Content-Type": "application/json",
+        "Authorization":token
+      };
+  
       return config;
     },
     (error) => {
