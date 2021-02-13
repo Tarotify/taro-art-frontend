@@ -2,35 +2,37 @@ import React,{useState,useEffect} from 'react'
 // import Header from '../../component/header'
 // import Footer from '../../component/footer'
 import './profile.less'
-import { Menu,Form,Select,Input,Button,Checkbox,notification,InputNumber,Upload,message,Avatar,List,Result,Modal,Tag } from 'antd';
+import { Menu,Form,Select,Input,Button,Checkbox,notification,InputNumber,Upload,message,Avatar,List,Result,Modal,Tag, Spin } from 'antd';
 import { GoogleCircleFilled, FacebookFilled,TwitterCircleFilled,UploadOutlined } from '@ant-design/icons';
 // import {GlobalVar} from '../../utils/global_var'
 import{useHistory} from 'react-router-dom'
 import {Link} from 'react-router-dom'
+import { userProfile } from '../../api/user'
 
 export default function UserProfile() {
     const type = 2;
     const [key, setKey] = useState('Basic')
     //取用户信息，和更新用户信息
     // const [userData, setUserData]= useState(Tools.loadUserInfo('user_Info') )
-    const [userData, setUserData] = useState({
-        'firstName': '123',
-        'lastName': '123' ,
-        'nickName': '123',
-        'country': 'CN',
-    })
+    const [userData, setUserData] = useState(null)
     //取用户类型只取1次所以不用useState
     const userType = 1
     
     
-    const [inital, setInital] = useState('U')
+    // const [inital, setInital] = useState('U')
 
     let history = useHistory();
     // const country = GlobalVar.country
 
     useEffect(() => {
-        getInitial()
-    }, [])
+        // getInitial()
+        userProfile().then(res => {
+            if(res.status_code === 200) {
+                console.log(res.data)
+                setUserData(res.data)
+            }
+        })
+    }, [userData])
     
     useEffect(() => {
         // const updated = Tools.loadUserInfo('user_Info')
@@ -103,12 +105,12 @@ export default function UserProfile() {
         },
       };
     
-    const getInitial = () =>{
-        const firstname = userData.firstName
-        console.log(firstname)
-        const letterArr = firstname.split("")
-        setInital(letterArr[0])
-    }
+    // const getInitial = () =>{
+    //     const firstname = userData.firstName
+    //     console.log(firstname)
+    //     const letterArr = firstname.split("")
+    //     setInital(letterArr[0])
+    // }
 
     const securityData = [
         {
@@ -227,7 +229,8 @@ export default function UserProfile() {
                 </Menu>
             </div>
             <div className="right">
-                {  key === 'Basic'  && userData !=={} &&
+                {   userData === null && <Spin className="loadingSpin" />}
+                {   key === 'Basic'  && userData !==null &&
                         <>
                             <div className="profiletitle">Basic Settings</div>
                             <div className="basicWrapper">
@@ -238,13 +241,14 @@ export default function UserProfile() {
                                         {...formItemLayout}
                                         // labelCol={labelStyle}
                                         labelAlign="left"
-                                        initialValues={userData}
+                                        // initialValues={userData}
                                         >
                                     <Form.Item
                                         className="setting_form_item"
                                         name="name"
-                                        label="User name"
+                                        label="Name"
                                         hasFeedback
+                                        initialValue={userData.name}
                                         rules={[
                                         {
                                             required: true,
@@ -261,7 +265,7 @@ export default function UserProfile() {
                                         label=" Age"
                                         hasFeedback
                                     >
-                                    <Input placeholder="Your age" className="select_input">
+                                    <Input placeholder="age" className="select_input">
                                     </Input>
                                     </Form.Item>
                                     <Form.Item
@@ -277,7 +281,7 @@ export default function UserProfile() {
                                         ]}
                                     >
                                     <Select placeholder="Please select a country" className="select_input">
-                                    <Option value="" selected="selected">Select Country</Option> 
+                                    {/* <Option value="" selected="selected">Select Country</Option>  */}
                                         {OptCountry()}
                                     </Select>
                                     </Form.Item>
@@ -326,7 +330,6 @@ export default function UserProfile() {
                                         className="setting_form_item"
                                         name="language"
                                         label="How many language do you speak"
-                                        hasFeedback
                                         rules={[
                                         {
                                             required: true,
@@ -350,14 +353,12 @@ export default function UserProfile() {
                                 </div>
                                 <div className="userAvatar">
                                     {/* <div className="avataTitle">Avatar</div> */}
-                                    <div> <Avatar size={80} style={{ color: '#f56a00', backgroundColor: '#fde3cf', fontSize: 30, marginTop: 10, marginBottom:20 }}>{inital}</Avatar></div>
-                                    <div>
+                                    <Avatar size={60} className="avatar" src={userData.avatar}></Avatar>
                                     <Upload {...props}>
                                         <Button>
-                                        <UploadOutlined /> Change avatar
+                                        <UploadOutlined />Upload Avatar
                                         </Button>
-                                    </Upload>,
-                                    </div>
+                                    </Upload>
                                 </div>
                             </div>
                         </>

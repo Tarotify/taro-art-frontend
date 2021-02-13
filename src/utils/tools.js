@@ -53,7 +53,7 @@ export const Tools = {
     userLogout() {
         let exp = new Date();
         exp.setTime(exp.getTime() - 1);
-        document.cookie=`__TaroToken__=;expires=${exp.toGMTString()}`;
+        document.cookie=`__TaroToken__=;expires=${exp.toGMTString()};Domain=localhost;`;
     }
 }   
 

@@ -1,4 +1,4 @@
-import { post } from '../../utils/request'
+import { post, get } from '../../utils/request'
 
 export function userRegBind(data) {
     const  url = 'user/signup/bind'
@@ -33,4 +33,9 @@ export function userRegCheck(data) {
 export function userReg(data) {
     const url = 'user/signup'
     return post(url,data)
+}
+
+export function userProfile() {
+    const url = 'user/profile'
+    return get(url)
 }

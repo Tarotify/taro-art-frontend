@@ -12,8 +12,8 @@
     margin: 40px auto;
     padding: 20px;
     display: flex;
+    width: 1024px;
     // height: 100vh;
-    width: 93%;
     overflow: hidden;
     .leftMenu {
         margin: 0;
@@ -25,6 +25,13 @@
         flex: 1 1;
         padding: 8px 40px;
         margin: 0;
+        position: relative;
+        .loadingSpin{
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+        }
         .profiletitle{
             font-size: 20px;
             font-weight: 600;
@@ -37,26 +44,24 @@
                 line-height: 22px;
                 border-radius: 8px;
                 font-size: 14px;
-                margin-left: 5px;  //
+                margin-left: 5px;  
             }
         }
         .basicWrapper{
             display: flex;
             padding-top: 10px;
+            // margin: 0 auto;
+            // max-width: 1024px;
             .infoForm{
-                margin: 0;
-                margin-left:30px;
-                max-width:750px;
+                margin: 0 30px;
+                min-width:400px;
                 .setting_form{
-                    width:500px;
-                    margin: 10px auto;
-                    padding: 20px;
-                    padding-top: 0px;
-                    padding-bottom: 10px;
+                    padding: 0 20px 10px 20px;
                     .setting_form_item{
-                          margin-bottom: 15px;
+                          margin-bottom: 10px;
                          .ant-col.ant-form-item-label{
                             margin: 0px 0px 2px 6px;
+                            font-weight: 400;
                           }
                          .ant-col.ant-form-item-control{
                              margin-left: 5px;
@@ -82,7 +87,21 @@
                 }                 
             }
             .userAvatar{
-                margin: 0;
+                display: flex;
+                margin-left: -200px;
+                flex-direction: column;
+                position: relative;
+                .avatar{
+                    color: '#f56a00';
+                    background-color:'#fde3cf';
+                    margin-top: 10; 
+                    margin-bottom:20;
+                    margin-bottom: 20px;
+                }
+                .upload{
+                    position: absolute;
+                    width: 40px;
+                }
                 .avataTitle{
                     color: #000;
                     font-size: 16px;

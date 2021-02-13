@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { message } from 'antd'
+import { Tools } from './tools'
 
 // 用户token
-// const token = ''
+const token = Tools.getToken()
 
 axios.defaults.timeout = 100000;
 axios.defaults.baseURL = "http://localhost:5000/api/";
@@ -16,11 +17,17 @@ axios.interceptors.request.use(
     (config) => {
       config.data = JSON.stringify(config.data);
       // 还没对formData处理
+      if(token !== '') {
+        config.headers = {
+          "Content-Type": "application/json",
+          "Authorization":token
+        };
+      }
       config.headers = {
         "Content-Type": "application/json",
       };
-      // 每次请求放入token
-    //   config.headers.x_access_token = token
+      // // 每次请求放入token
+      // config.headers.auth = token
       return config;
     },
     (error) => {

@@ -12,6 +12,7 @@ export default function Index() {
 
     useEffect(() => {
         const token = Tools.getToken()
+        console.log(token)
         if(token !== '') {
             getSession({token}).then(res => {
                 if (res.status_code === 200) {
