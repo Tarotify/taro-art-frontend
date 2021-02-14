@@ -1,9 +1,10 @@
+// 顶部固定导航
 .header{
     // height: 80px;
     width: 100%;
     display: block;
     // background-color: #fff;
-    color: #000;
+    // color: #000;
     height: 72px;
     position: fixed;
     right: 0;
@@ -14,7 +15,7 @@
         width: 100%;
         max-width: 1150px;
         margin: auto;
-        height: 72px;
+        height: 75px;
         position: relative;
         .title{
             float: left;
@@ -42,16 +43,17 @@
         ul{
             list-style: none;
             padding-top: 62px;
-            // display:flex;
+            display:flex;
             float: right;
             // margin: 0 15px 0 0;
             // width: 175px;
-            height: 72px;
+            height: 75px;
             li{
                 display: block;
                 color: #FFFFFF;
-                margin-right: 42px;
-                width: 100%;
+                margin-right: 65px;
+                // max-width: 150px;
+                // width: 100%;
                 font-family: Inter;
                 font-style: normal;
                 font-weight: 400;
@@ -61,13 +63,19 @@
             .loginBtn{
                 background-color: #FF8F67;
                 border-color: #FF8F67;
+                width: 110px;
+                height: 35px;
                 .loginspan{
                     color: #FFF;
                     margin-left: 10px;
+                    font-weight: 500;
                 }
             }
-            .login{
+            .loginIcon{
                 color: #fff;
+            }
+            .avatar{
+                cursor: pointer;
             }
         }
     }

@@ -29,15 +29,15 @@ export default function Index({type}) {
     }
     const menu = (
         <Menu className="menu">
-          <Menu.Item  key="0" icon={<UserOutlined />} >
-            <Link to="/user/profile">我的账户</Link>
+          <Menu.Item  key="0">
+            <Link to="/user/profile"><UserOutlined />我的账户</Link>
           </Menu.Item>
           {/* <Menu.Item key="1">
             <a href="http://www.taobao.com/">2nd menu item</a>
           </Menu.Item> */}
           <Menu.Divider />
-          <Menu.Item  key="3" icon={<LogoutOutlined />}>
-              <span onClick={() =>handleLogout()}>退出登录</span>
+          <Menu.Item  key="3">
+              <span onClick={() =>handleLogout()}><LogoutOutlined />退出登录</span>
           </Menu.Item>
         </Menu>
     );
@@ -148,20 +148,20 @@ export default function Index({type}) {
                             </Link>
                         </div>
                             <ul>
-                                <li>Browsing</li>
-                                <li>K-12 Learning</li>
-                                <li>About</li>                        
+                                <Link to="/"><li>Browsing</li></Link>
+                                <Link to="/"><li>K-12 Learning</li></Link>
+                                <Link to="/"><li>About</li></Link>                        
                                 { userInfo === null &&
                                     <div>
-                                        <Button type="round" className="loginBtn" icon={<LoginOutlined className="login" />}><Link to="/user/login"><span className="loginspan">Login</span></Link></Button>
+                                        <Button type="round" className="loginBtn" icon={<LoginOutlined className="loginIcon" />}><Link to="/user/login"><span className="loginspan">Login</span></Link></Button>
                                     </div>
                                 }
                                 { userInfo !== null && userInfo !== undefined &&
-                                    <div>
+                                    // <div>
                                         <Dropdown overlayClassName="dropdownMenu" overlay={menu} trigger={['click']}>
-                                            <Avatar className="avatar" size={40} src={userInfo.avatar} />
+                                            <Avatar className="avatar" size={35} src={userInfo.avatar} />
                                         </Dropdown>
-                                    </div>
+                                    // </div>
                                 }      
                             </ul>
                         </div>

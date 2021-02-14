@@ -6,6 +6,7 @@ import './index.less'
 import { getSession } from '../../api/user'
 import { UserOutlined, LogoutOutlined, LoginOutlined } from '@ant-design/icons';
 import Header from '../../components/header'
+import Footer from '../../components/footer'
 
 export default function Index() {
     const [ userInfo, SetUserInfo ] = useState(undefined)
@@ -45,9 +46,8 @@ export default function Index() {
 
     return (
         <div className="homePage_wrapper">
-             <Header/>
-            {/* <div className="bg_wrapper">
-            </div> */}
+            <Header/>
+            <Footer/>
         </div>
    )
 }
