@@ -8,6 +8,8 @@ import { GoogleCircleFilled, FacebookFilled,TwitterCircleFilled,UploadOutlined }
 import{useHistory} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import { userProfile } from '../../api/user'
+import Header from '../../components/header'
+import Footer from '../../components/footer'
 
 export default function UserProfile() {
     const type = 2;
@@ -211,6 +213,7 @@ export default function UserProfile() {
     <> 
      {/* <Header type={type}></Header> */}
     <div className="wrapper">
+        <Header/>
         <div className="profileContainer">
             <div className="leftMenu">
                 <Menu
@@ -497,6 +500,7 @@ export default function UserProfile() {
                 </Form.Item>
              </Form>
         </Modal>
+        {/* <Footer/> */}
     </div>
     {/* <Footer/> */}
     </>
