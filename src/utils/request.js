@@ -5,7 +5,7 @@ import { Tools } from './tools'
 // 用户token
 
 axios.defaults.timeout = 100000;
-axios.defaults.baseURL = "http://localhost:5000/api/";
+axios.defaults.baseURL = "http://8.129.118.14:5000/api/";
 axios.defaults.withCredentials = true  // nodejs和vue启动的端口不同，所以使用了cors跨域，影响了cookie的设置。 
                                       // 解决浏览器set-cookie显示有内容，但没写入cookie
 /**
@@ -25,7 +25,7 @@ axios.interceptors.request.use(
         // 每次请求放入token
         // config.headers.auth = token
         "Content-Type": "application/json",
-        "Authorization":token
+        "Authorization":token,
       };
   
       return config;
