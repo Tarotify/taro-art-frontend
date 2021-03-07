@@ -42,5 +42,5 @@
     ]
   },
   /* 记得跨域设置 使set-cookies 生效 */
-  "proxy": "http://localhost:5000"
+  "proxy": "http://8.129.118.14:5000"
 }
