@@ -13,8 +13,18 @@ import UserFindPw from './pages/user/forgetpw'
 import Oauthloading from './pages/oauth/loading.jsx'
 import UserProfile from './pages/user/profile'
 import NoMatch from './pages/404'
+// // WebWorker helper class
+// import WebWorker from './utils/webWorker';
+// // Your web worker
+// import LoopWorker from './worker/loopWorker';
 
 function App() {
+  // const workerInstance = new WebWorker(new LoopWorker('123'));
+  // workerInstance.addEventListener("message", e => console.log(e.data), false);
+  // workerInstance.postMessage("bar");  
+  // workerInstance.onmessage = function(evt) {
+  //     console.log('主收'+evt.data)
+  // }
   return (
     <Router>
     <Switch>

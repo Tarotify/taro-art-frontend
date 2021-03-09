@@ -7,10 +7,40 @@ import { getSession } from '../../api/user'
 import { UserOutlined, LogoutOutlined, LoginOutlined } from '@ant-design/icons';
 import Header from '../../components/header'
 import Footer from '../../components/footer'
+// WebWorker helper class
+import WebWorker from '../../utils/webWorker';
+// Your web worker
+import LoopWorker from '../../worker/loopWorker';
 
+// console.log('Init worker...')
+
+// // Worker init
+// const workerInstance = new WebWorker(LoopWorker) 
+
+
+// // Listening for messages from worker
+// workerInstance.addEventListener("message", e => {
+
+//   console.log('[MAIN] MSG FROM WORKER: ', e.data)
+
+
+// }, false)
+
+
+// workerInstance.postMessage("Hi, worker! I'm main thread!")
 export default function Index() {
     const [ userInfo, SetUserInfo ] = useState(undefined)
     const token = Tools.getToken()
+    console.log('Init worker...')
+    const workerInstance = new WebWorker(LoopWorker);
+    useEffect(() => {
+        workerInstance.postMessage("bar");  
+        workerInstance.onmessage = function(evt) {
+            // console.log('主收'+evt.data)
+            console.log(evt)
+        }
+    }, [])
+    
     useEffect(() => {
         if(token !== '') {
             getSession({token}).then(res => {
